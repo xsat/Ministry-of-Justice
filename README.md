@@ -1,11 +1,11 @@
 # Persons
 
-![Persons](images/persons.png)
+![Persons](public/img/persons.png)
 
 # Crimes
 
-![Crimes](images/crimes.png)
+![Crimes](public/img/crimes.png)
 
 # Prisons
 
-![Prisons](images/prisons.png)
+![Prisons](public/img/prisons.png)
