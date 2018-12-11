@@ -1,4 +1,4 @@
-<?php require_once  __DIR__ . '/../app/Application.php'; ?>
+<?php require_once  __DIR__ . '/app/Application.php'; ?>
 <?php $app = new Application(); ?>
 <!doctype html>
 <html lang="en">
