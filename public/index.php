@@ -1,23 +1,28 @@
-<?php
+<?php require_once  __DIR__ . '/../app/Application.php'; ?>
+<?php $app = new Application(); ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-$pdo = new PDO(
-    'mysql:host=127.0.0.1;dbname=crimes;charset=utf8',
-    'root',
-    '',
-    [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        PDO::ATTR_EMULATE_PREPARES => false,
-    ]
-);
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-$personsWithContacts = $pdo->query('
-  SELECT p.id, p.first_name, p.last_name, 
-      p.gender, p.birth_date, c.address, c.phone 
-  FROM persons.person p
-  INNER JOIN persons.contact c 
-    ON c.person_id = p.id
-')->fetchAll();
-
-var_dump($personsWithContacts);
-
+    <title>Prisons</title>
+</head>
+<body>
+<div class="container">
+<h1>Persons</h1>
+<pre>
+   <?php echo json_encode($app->getPersonsWithContacts(), JSON_PRETTY_PRINT); ?>
+</pre>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>
