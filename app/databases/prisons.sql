@@ -41,8 +41,8 @@ CREATE UNIQUE INDEX prisoner_id_uindex ON prisons.prisoner (id);
 CREATE TABLE prisons.visit
 (
   id INT(10) UNSIGNED PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  prisoner_id INT(10) UNSIGNED NOT NULL,
-  person_id INT(10) UNSIGNED NOT NULL,
+  prisoner_id INT(10) UNSIGNED NOT NULL ,
+  visitor_id INT(10) UNSIGNED NOT NULL COMMENT 'Person ID',
   visit_date DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
   CONSTRAINT visit_prisoner_id_fk FOREIGN KEY (prisoner_id)
   REFERENCES prisons.prisoner (id) ON DELETE CASCADE ON UPDATE CASCADE
@@ -57,3 +57,21 @@ VALUES
   (23459, 'Bang Kwang'),
   (10067, 'La Sabaneta'),
   (37038, 'Tadmor');
+
+INSERT INTO prisons.staff (id, person_id, manager_id, prison_id)
+VALUES
+  (1, 67890, null, 12345),
+  (2, 43291, null, 66666),
+  (3, 70691, null, 23459),
+  (4, 88823, null, 10067),
+  (5, 54321, null, 37038),
+  (6, 10106, 1, 12345),
+  (7, 69685, 1, 12345),
+  (8, 20346, 2, 66666),
+  (9, 77777, 2, 66666),
+  (10, 45001, 3, 23459),
+  (11, 97021, 3, 23459),
+  (12, 39602, 4, 10067),
+  (13, 11902, 4, 10067),
+  (14, 25810, 5, 37038),
+  (15, 80734, 5, 37038);
