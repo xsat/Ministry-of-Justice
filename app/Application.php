@@ -40,4 +40,22 @@ class Application
               ON c.person_id = p.id
         ')->fetchAll();
     }
+
+    public function getAllPrisoners(){
+        return $this->pdo->query('
+            SELECT * from prisons.prisoner
+        ')->fetchAll();
+    }
+
+    public function getAllPrisons(){
+        return $this->pdo->query('
+            SELECT * from prisons.prison
+        ')->fetchAll();
+    }
+
+    public function getAllStaff(){
+        return $this->pdo->query('
+            SELECT * from prisons.prison
+        ')->fetchAll();
+    }
 }
