@@ -14,21 +14,10 @@
 </head>
 <body>
 <div class="container">
-<h1>Persons</h1>
-<pre>
-   <?php echo json_encode($app->getPersons(), JSON_PRETTY_PRINT); ?>
-</pre>
-<h1>Crimes</h1>
-<pre>
-   <?php echo json_encode($app->getCrimes(), JSON_PRETTY_PRINT); ?>
-</pre>
-<h1>Visits</h1>
-<pre>
-   <?php echo json_encode($app->getVisits(), JSON_PRETTY_PRINT); ?>
-</pre>
+
     <h1>Visits</h1>
     <pre>
-   <?php echo json_encode($app->getAllPrisons(), JSON_PRETTY_PRINT); ?>
+   <?php echo json_encode($app->getVisits(), JSON_PRETTY_PRINT); ?>
 </pre>
 </div>
 

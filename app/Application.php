@@ -30,7 +30,7 @@ class Application
     /**
      * @return array
      */
-    public function getPersonsWithContacts()
+    public function getPersons()
     {
         return $this->pdo->query('
             SELECT p.id, p.first_name, p.last_name, 
@@ -40,6 +40,7 @@ class Application
               ON c.person_id = p.id
         ')->fetchAll();
     }
+
 
     public function getAllPrisoners(){
         return $this->pdo->query('
@@ -55,7 +56,42 @@ class Application
 
     public function getAllStaff(){
         return $this->pdo->query('
-            SELECT * from prisons.prison
+            SELECT * from prisons.staff
+')->fetchAll();
+    }
+    /**
+     * @return array
+     */
+    public function getCrimes()
+    {
+        return $this->pdo->query('
+            SELECT c.id, c.crime_type, c.crime_level, c.crime_date,
+              c.victim_id, vp.first_name victim_first_name, vp.last_name victim_last_name,
+              c.criminal_id, cp.first_name criminal_first_name, cp.last_name criminal_last_name
+            FROM crimes.crime c
+            INNER JOIN persons.person vp 
+              ON c.victim_id = vp.id
+            LEFT JOIN persons.person cp
+              ON c.criminal_id = cp.id
+        ')->fetchAll();
+    }
+
+    /**
+     * @return array
+     */
+    public function getVisits()
+    {
+        return $this->pdo->query('
+            SELECT v.id, v.prisoner_id, pp.first_name prisoner_first_name, pp.last_name prisoner_last_name,
+              v.visitor_id, vp.first_name visitor_first_name, vp.last_name visitor_last_name, v.visit_date
+            FROM prisons.visit v
+            INNER JOIN persons.person vp 
+              ON v.visitor_id = vp.id
+            INNER JOIN prisons.prisoner p 
+              ON v.prisoner_id = p.id
+            INNER JOIN persons.person pp
+              ON p.person_id = pp.id
+
         ')->fetchAll();
     }
 }
