@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/Table.php';
+
 /**
  * Class Application
  */
@@ -42,23 +44,27 @@ class Application
     }
 
 
-    public function getAllPrisoners(){
+    public function getAllPrisoners()
+    {
         return $this->pdo->query('
             SELECT * from prisons.prisoner
         ')->fetchAll();
     }
 
-    public function getAllPrisons(){
+    public function getAllPrisons()
+    {
         return $this->pdo->query('
             SELECT * from prisons.prison
         ')->fetchAll();
     }
 
-    public function getAllStaff(){
+    public function getAllStaff()
+    {
         return $this->pdo->query('
             SELECT * from prisons.staff
 ')->fetchAll();
     }
+
     /**
      * @return array
      */
